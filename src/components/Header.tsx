@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [activePage, setActivePage] = useState<string>(window.location.pathname)
+  const [activePage, setActivePage] = useState<string>('')
   const [activeModal, setActiveModal] = useState(false)
 
   const navItems = [
@@ -22,6 +22,12 @@ export default function Header() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setActivePage(window.location.pathname)
+    }
   }, [])
 
   useEffect(() => {
