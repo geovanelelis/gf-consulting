@@ -1,12 +1,12 @@
 'use client'
 
 import { FaEquals, FaXmark } from 'react-icons/fa6'
-import Button from './ui/Button'
+import Button from '../../ui/Button'
 import React, { useEffect, useState } from 'react'
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [activePage, setActivePage] = useState<string>(location.pathname)
+  const [activePage, setActivePage] = useState<string>(window.location.pathname)
   const [activeModal, setActiveModal] = useState(false)
 
   const navItems = [
@@ -39,8 +39,8 @@ export default function Header() {
       } transition-all duration-400`}
     >
       <div
-        className={`mx-auto bg-white/80 backdrop-blur-sm rounded-2xl ${
-          isScrolled ? 'py-5 px-6' : 'py-5 px-12'
+        className={`mx-auto bg-white/80 backdrop-blur-sm rounded-2xl py-6 ${
+          isScrolled ? 'px-8' : 'px-12'
         } transition-all duration-400`}
       >
         <div className="flex justify-between items-center mx-auto w-full max-w-[1400px] h-auto transition-all duration-400">
@@ -84,7 +84,7 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-          <Button className="hidden md:block bg-dourado-escuro hover:scale-105 hover:contrast-125">
+          <Button className="hidden md:block text-white bg-dourado-escuro hover:scale-105 hover:contrast-125">
             Agendar Reunião
           </Button>
         </div>
@@ -112,7 +112,7 @@ export default function Header() {
                 </li>
               ))}
               <li>
-                <Button className="w-full bg-dourado-escuro hover:scale-105 hover:contrast-125">
+                <Button className="w-full text-white bg-dourado-escuro hover:scale-105 hover:contrast-125">
                   Agendar Reunião
                 </Button>
               </li>
