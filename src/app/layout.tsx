@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/Header'
 import localFont from 'next/font/local'
+import Footer from '@/components/Footer'
 
 const neulisAlt = localFont({
   src: [
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body className={`${neulisAlt.variable} antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )

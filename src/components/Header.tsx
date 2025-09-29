@@ -1,7 +1,7 @@
 'use client'
 
 import { FaEquals, FaXmark } from 'react-icons/fa6'
-import Button from '../../ui/Button'
+import Button from './ui/Button'
 import React, { useEffect, useState } from 'react'
 
 export default function Header() {

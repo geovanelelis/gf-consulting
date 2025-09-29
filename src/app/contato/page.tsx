@@ -24,7 +24,9 @@ const ContactSection = () => {
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -32,9 +34,8 @@ const ContactSection = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    // Simular envio do formulário
     setIsSubmitted(true)
     setTimeout(() => setIsSubmitted(false), 3000)
   }
@@ -42,24 +43,10 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Telefone',
-      value: '(31) 9 8765-4321',
-      action: 'tel:+5531987654321',
-      description: 'Seg - Sex: 8h às 18h',
-    },
-    {
-      icon: MessageCircle,
       title: 'WhatsApp',
       value: '(31) 9 8765-4321',
       action: 'https://wa.me/5531987654321',
       description: 'Resposta rápida',
-    },
-    {
-      icon: Mail,
-      title: 'E-mail',
-      value: 'contato@gfconsulting.com.br',
-      action: 'mailto:contato@gfconsulting.com.br',
-      description: 'Resposta em 24h',
     },
     {
       icon: MapPin,
@@ -67,6 +54,13 @@ const ContactSection = () => {
       value: 'Belo Horizonte - MG',
       action: '#',
       description: 'Atendimento presencial',
+    },
+    {
+      icon: Mail,
+      title: 'E-mail',
+      value: 'contato@gfconsulting.com.br',
+      action: 'mailto:contato@gfconsulting.com.br',
+      description: 'Resposta em 24h',
     },
   ]
 
@@ -253,25 +247,44 @@ const ContactSection = () => {
           {/* Contact Information */}
           <div className="order-1 lg:order-2 space-y-8">
             {/* Contact Cards */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              {contactInfo.map((info, index) => (
+            <div className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+              {contactInfo.slice(0, 2).map((info, index) => (
                 <a
-                  key={index}
-                  href={info.action}
-                  className="block p-6 bg-white rounded-xl border border-gray-200 card-hover"
+                key={index}
+                href={info.action}
+                className="block p-6 bg-white rounded-xl border border-gray-200 card-hover"
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-dourado-escuro/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <info.icon size={24} className="text-dourado-escuro" />
-                    </div>
-                    <div className="flex-grow">
-                      <h4 className="font-semibold text-azul-marinho mb-1">{info.title}</h4>
-                      <p className="text-azul-marinho font-medium mb-1">{info.value}</p>
-                      <p className="text-sm text-cinza-chumbo">{info.description}</p>
-                    </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-dourado-escuro/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <info.icon size={24} className="text-dourado-escuro" />
                   </div>
+                  <div className="flex-grow">
+                  <h4 className="font-semibold text-azul-marinho mb-1">{info.title}</h4>
+                  <p className="text-azul-marinho font-medium mb-1">{info.value}</p>
+                  <p className="text-sm text-cinza-chumbo">{info.description}</p>
+                  </div>
+                </div>
                 </a>
               ))}
+              </div>
+              <div>
+              <a
+                href={contactInfo[2].action}
+                className="block p-6 bg-white rounded-xl border border-gray-200 card-hover"
+              >
+                <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-dourado-escuro/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  {React.createElement(contactInfo[2].icon, { size: 24, className: "text-dourado-escuro" })}
+                </div>
+                <div className="flex-grow">
+                  <h4 className="font-semibold text-azul-marinho mb-1">{contactInfo[2].title}</h4>
+                  <p className="text-azul-marinho font-medium mb-1">{contactInfo[2].value}</p>
+                  <p className="text-sm text-cinza-chumbo">{contactInfo[2].description}</p>
+                </div>
+                </div>
+              </a>
+              </div>
             </div>
 
             <div className="border border-gray-200 rounded-xl bg-gradient-to-br from-dourado-escuro/5 to-dourado-claro/5">
